@@ -1,0 +1,11 @@
+.sun-rise-set {
+  flex: 1;
+  flex-direction: column;
+
+  color: #fff;
+  font-size: 20px;
+  padding-bottom: 2px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 2px 2px rgba(50, 50, 70, 0.5);
+}

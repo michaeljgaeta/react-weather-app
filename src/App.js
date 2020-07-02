@@ -28,6 +28,19 @@ function App() {
     }
   };
 
+  const timeBuilder = (unixTimestamp) => {
+    //Issue: Cannot get the time to adjust with daylight savings--------
+    // Create a new JavaScript Date object based on the unix timestamp
+    // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+    let adjustedTime = new Date((unixTimestamp + weather.timezone) * 1000);
+    // Hours part from the timestamp
+    let hours = adjustedTime.getHours();
+    // Minutes part from the timestamp
+    let minutes = "0" + adjustedTime.getMinutes();
+    let formattedTime = hours + ":" + minutes.substr(-2);
+    return formattedTime;
+  };
+
   //build date function
   const dateBuilder = (d) => {
     let months = [
@@ -55,12 +68,14 @@ function App() {
   };
 
   return (
+    //conditionally set App CSS class (warm/cold weather)
     <div
       className={
-        typeof weather.main != "undefined" ? (weather.main.temp > 16 ? "app warm" : "app") : "app"
+        typeof weather.main != "undefined" ? (weather.main.temp > 23 ? "app warm" : "app") : "app"
       }
     >
-      <main className="main">
+      {/* search input w/ React hooks */}
+      <div className="main">
         <div className="search-box">
           <input
             type="text"
@@ -72,6 +87,7 @@ function App() {
           />
         </div>
 
+        {/* conditionally set weather info */}
         {typeof weather.main != "undefined" ? (
           <>
             <LocationBox
@@ -79,12 +95,17 @@ function App() {
               country={weather.sys.country}
               date={dateBuilder(new Date())}
             />
-            <WeatherBox temp={Math.round(weather.main.temp)} weather={weather.weather[0].main} />
+            <WeatherBox
+              temp={Math.round(weather.main.temp)}
+              weather={weather.weather[0].icon}
+              sunrise={timeBuilder(weather.sys.sunrise)}
+              sunset={timeBuilder(weather.sys.sunset)}
+            />
           </>
         ) : (
           ""
         )}
-      </main>
+      </div>
     </div>
   );
 }
