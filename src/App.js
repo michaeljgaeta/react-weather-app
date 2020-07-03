@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import WeatherBox from "./Views/WeatherBox";
 import LocationBox from "./Views/LocationBox";
+import Toggle from "./Components/Toggle";
 import "./index.css";
 
-// const apiKey = process.env.REACT_APP_OPEN_WEATHER_API_KEY
 const api = {
-  key: "1c6c246e2594f31d87b28358e25d5176",
+  key: process.env.REACT_APP_OPEN_WEATHER_API_KEY,
   base: "https://api.openweathermap.org/data/2.5/"
 };
 
 function App() {
-  //react hooks
+  //Note: In the interview, I said that I didn't learn react hooks. During this project, I took a bit of time to understand them because I thought they would be useful.
+
+  //Namely, I implemented 'useState' for updating the form input, passing the query to the API, and passing the weather data back from the API into React.
+
+  //react hook [currentState, updateStateFunction]
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
+  const [toggle, setToggle] = useState(false);
 
   //fetch weather data from API
   const search = (evt) => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(`${api.base}weather?q=${query}&units=${"metric"}&APPID=${api.key}`)
         .then((res) => res.json())
 
         .then((result) => {
@@ -71,7 +76,11 @@ function App() {
     //conditionally set App CSS class (warm/cold weather)
     <div
       className={
-        typeof weather.main != "undefined" ? (weather.main.temp > 23 ? "app warm" : "app") : "app"
+        typeof weather.main != "undefined"
+          ? Math.round(weather.main.temp) >= 23
+            ? "app warm"
+            : "app"
+          : "app"
       }
     >
       {/* search input w/ React hooks */}
@@ -100,6 +109,13 @@ function App() {
               weather={weather.weather[0].icon}
               sunrise={timeBuilder(weather.sys.sunrise)}
               sunset={timeBuilder(weather.sys.sunset)}
+              // toggle={
+              //   <>
+              //     {toggle && <>"metric"</>}
+              //     <br />
+              //     <button onClick={() => setToggle((toggle) => !toggle)}>"imperial"</button>
+              //   </>
+              // }
             />
           </>
         ) : (
