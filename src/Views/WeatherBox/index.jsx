@@ -1,7 +1,6 @@
 import React from "react";
 import Temp from "../../Components/Temp"
 import Weather from "../../Components/Weather"
-import Toggle from "../../Components/Toggle"
 import SunRiseSet from "../../Components/SunRiseSet"
 import "./index.css";
 
@@ -11,7 +10,6 @@ export default function WeatherBox(props) {
       <Temp temp={props.temp}/>
       <Weather weather={props.weather}/>
       <SunRiseSet sunrise={props.sunrise} sunset={props.sunset}/>
-      <Toggle/>
     </div>
   );
 }

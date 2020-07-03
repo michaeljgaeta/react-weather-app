@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WeatherBox from "./Views/WeatherBox";
 import LocationBox from "./Views/LocationBox";
-import Toggle from "./Components/Toggle";
+import Toggle from "./Components/Toggle"
 import "./index.css";
 
 const api = {
@@ -17,12 +17,12 @@ function App() {
   //react hook [currentState, updateStateFunction]
   const [query, setQuery] = useState("");
   const [weather, setWeather] = useState({});
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState("metric");
 
   //fetch weather data from API
   const search = (evt) => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=${"metric"}&APPID=${api.key}`)
+      fetch(`${api.base}weather?q=${query}&units=${toggle}&APPID=${api.key}`)
         .then((res) => res.json())
 
         .then((result) => {
@@ -35,6 +35,7 @@ function App() {
 
   const timeBuilder = (unixTimestamp) => {
     //Issue: Cannot get the time to adjust with daylight savings--------
+
     // Create a new JavaScript Date object based on the unix timestamp
     // multiplied by 1000 so that the argument is in milliseconds, not seconds.
     let adjustedTime = new Date((unixTimestamp + weather.timezone) * 1000);
@@ -109,14 +110,8 @@ function App() {
               weather={weather.weather[0].icon}
               sunrise={timeBuilder(weather.sys.sunrise)}
               sunset={timeBuilder(weather.sys.sunset)}
-              // toggle={
-              //   <>
-              //     {toggle && <>"metric"</>}
-              //     <br />
-              //     <button onClick={() => setToggle((toggle) => !toggle)}>"imperial"</button>
-              //   </>
-              // }
             />
+            <Toggle/>
           </>
         ) : (
           ""
