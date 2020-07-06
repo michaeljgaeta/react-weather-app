@@ -1,3 +1,5 @@
+![Finished Project](https://i.imgur.com/hf47neR.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
