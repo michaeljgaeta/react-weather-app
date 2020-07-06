@@ -5,7 +5,7 @@ export default function Temp(props) {
   return (
     <div className="temp">
       {props.temp}
-      {!props.unit ? "°c" : "°F"}
+      {!props.unit ? "°C" : "°F"}
     </div>
   );
 }

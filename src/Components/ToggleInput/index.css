@@ -4,9 +4,16 @@
   position: relative;
   height: 40px;
   margin: auto;
+
   text-align: center;
   padding-top: 40px;
   padding-right: 10px;
+}
+
+@media (max-height: 670px) {
+  .toggle {
+    margin-bottom: 75px;
+  }
 }
 
 .degrees {
@@ -45,7 +52,6 @@
 }
 
 .switch input:checked + div {
-
   -webkit-transform: translate3d(100%, 0, 0);
   -moz-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
