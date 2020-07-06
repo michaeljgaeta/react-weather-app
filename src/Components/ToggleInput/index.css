@@ -23,10 +23,6 @@
   opacity: 0;
 }
 
-/**
- * 1. Adjust this to size
- */
-
 .switch {
   display: inline-block;
   font-size: 30px; /* 1 */
