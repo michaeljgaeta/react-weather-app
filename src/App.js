@@ -13,7 +13,7 @@ const api = {
 
 function App() {
   //updates city for API
-  const [city, setCity] = useState("lisbon");
+  const [city, setCity] = useState("los angeles");
 
   //updates JSON to 'weather'
   const [weather, setWeather] = useState({});
