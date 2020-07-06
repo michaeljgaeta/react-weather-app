@@ -10,8 +10,12 @@ export default function SelectCity(props) {
           value={props.value}
           name="city"
         >
-          <option value="Los Angeles">Los Angeles</option>
-          <option value="New York City">New York</option>
+          <option className="option" value="Los Angeles">
+            Los Angeles
+          </option>
+          <option className="option" value="New York City">
+            New York
+          </option>
           <option value="Lisbon">Lisbon</option>
           <option value="London">London</option>
           <option value="Tokyo">Tokyo</option>

@@ -8,13 +8,13 @@
 }
 
 @media (min-width: 415px) {
-  .select-box {
+  .box {
     width: 90%;
   }
 }
 
 @media (min-width: 600px) {
-  .select-box {
+  .box {
     width: 375px;
   }
 }
@@ -45,4 +45,8 @@
   transform: translateY(-50%);
   width: 15px;
   opacity: 0.5;
+}
+
+select:after {
+  background-color: red;
 }
