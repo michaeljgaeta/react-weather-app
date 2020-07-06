@@ -1,4 +1,4 @@
-![Finished Project](https://imgur.com/RErrcNX)
+![Finished Project](https://i.imgur.com/RErrcNX.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
